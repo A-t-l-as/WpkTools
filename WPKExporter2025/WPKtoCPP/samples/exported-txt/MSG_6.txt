@@ -1,7 +1,0 @@
-wavepack msg_6
-{
-	Level0 1
-	{
-		Wave 100 30 35 255 255 0 delayed MESSAGES\Msg_6.WAV
-	}
-}

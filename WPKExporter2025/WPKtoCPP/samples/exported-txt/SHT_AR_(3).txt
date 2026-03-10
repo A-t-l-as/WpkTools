@@ -1,9 +1,0 @@
-wavepack SHT_AR_(3)
-{
-	Type 0
-	DisableLevel2 0
-	Level0 1
-	{
-		Wave 50 SHT\rakieta_a.wav
-	}
-}

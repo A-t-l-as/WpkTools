@@ -1,6 +1,9 @@
 # WpkTools
 WpkExporter + WpkImporter
 
+Kompilacja najnowszej wersji wymaga skompilowanej statycznej biblioteki `KsUtils`.<br>
+[Link](https://github.com/A-t-l-as/LibKsUtils)<br>
+
 Do czego służy ta paczka programów?
 ***********************************
 Programy w tej paczce służą do dekompilacji i kompilacji plików .wpk. WpkExporter jest następcą programu WPKtoTXT (napsianego przez Atlasa), który eksportował pliki .wpk do postaci .txt. 
@@ -23,6 +26,9 @@ Programy obsługują pliki .wpk z następujących gier:<br>
 WpkImporter i WpkExporter zostały napisane w 100% przez Atlasa.<br>
 
 --------------------------------------------------------------------------------------------------------------------------------------
+
+Compiling the latest version requires the compiled static library `KsUtils`.<br>
+[Link](https://github.com/A-t-l-as/LibKsUtils)<br>
 
 What is this software package for?
 ***********************************
