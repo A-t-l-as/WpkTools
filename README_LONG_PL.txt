@@ -1,6 +1,6 @@
 Do czego służy ta paczka programów?
 ***********************************
-Programy w tej paczce służą do dekompilacji i kompilacji plików .wpk. WpkExporter jest następcą programu WPKtoTXT (napsianego przez Atlasa), który eksportował pliki .wpk do postaci .txt. 
+Programy w tej paczce służą do dekompilacji i kompilacji plików .wpk. WpkExporter jest następcą programu WPKtoTXT (napisanego przez Atlasa), który eksportował pliki .wpk do postaci .txt. 
 WpkExporter różni się tym, że wprowadza obsługę innych wersji .wpk z innych gier studia Reality Pump. Program umożliwia również eskport do formatu .cpp.
 
 WpkImporter natomiast jest następcą programu Wpconvert.exe stworzonego przez Reality Pump dołączanego do Earth 2160 sdk. 
