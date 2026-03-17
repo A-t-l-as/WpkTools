@@ -35,8 +35,8 @@ namespace WpkCompilatorStrings
 
     constexpr char null_const_uppercase_str[] = "NULL";
 
-    constexpr char measure_all_value_sizes_after_this_instruction_fn_name_str[]
-        = "measure_all_value_sizes_after_this_instruction()";
+    constexpr char measure_all_value_sizes_after_this_instruction_fn_name_str[] =
+        "measure_all_value_sizes_after_this_instruction()";
 
     constexpr char wavepack_type_value_name_str[] = "wavepack_type";
 

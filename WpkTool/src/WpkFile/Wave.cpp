@@ -238,7 +238,7 @@ string Wave::ToNewFormatString() const
             ss  << CompilatorValueTypes::c_struct_type_str << " " << WpkCompilatorStrings::wave_struct_name_str << "{ ";
 
             CW::WriteTrivialValue(ss, "a_0", this->m_a[0], false);
-            ss  << "\t";
+            ss  << '\t';
 
             ss  << CompilatorValueTypes::c_char_type_str << " "
                 << WpkCompilatorStrings::wave_path_name_str << "[] = \"" << this->m_wave_path << "\"; };";
@@ -252,13 +252,13 @@ string Wave::ToNewFormatString() const
             for (int i = 0; i < this->a_size; ++i)
             {
                 CW::WriteTrivialValue(ss, "a_" + to_string(i), this->m_a[i], false);
-                ss << "\t";
+                ss << '\t';
             }
 
             for (int i = 0; i < this->b_size; ++i)
             {
                 CW::WriteTrivialValue(ss, "b_" + to_string(i), this->m_b[i], false);
-                ss << "\t";
+                ss << '\t';
             }
 
             for (int i = 0; i < this->c_size; ++i)
@@ -289,7 +289,7 @@ string Wave::ToNewFormatString() const
                 }
 
                 CW::WriteTrivialValue(ss, "c_" + to_string(i), this->m_c[i], false);
-                ss << "\t";
+                ss << '\t';
             }
 
             ss << CompilatorValueTypes::c_char_type_str << " "

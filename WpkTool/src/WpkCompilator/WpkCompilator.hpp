@@ -39,7 +39,6 @@ public:
 		{
             input_file.DeleteComments();
 
-            //input_file.DeleteContrCharAndPutToCleanFileVector();
             input_file.CleanCppFileBufferFromContrChars();
 
 			CompileCppFileToBin(input_file.GetCleanFileBuffer());
@@ -55,7 +54,6 @@ public:
                 CONSOLE_OUT.PrintLn(data_size);
 
                 this->r_output_file_buffer.ChangeValue(m_data_size_offset, data_size);
-                //memcpy(&output_file_buffer[m_data_size_offset], &data_size, sizeof(data_size));
 
                 this->m_measure_error_signal = false;
             }
@@ -64,11 +62,8 @@ public:
             {
                 if (this->m_arr_of_signals_for_levels[j] == true)
                 {
-                    //memcpy(	&output_file_buffer[ m_arr_of_offsets_for_number_of_waves[j] ],
-                    //       &m_arr_of_number_of_waves[j],
-                    //       sizeof(m_arr_of_number_of_waves[j]));
-
-                    this->r_output_file_buffer.ChangeValue( m_arr_of_offsets_for_number_of_waves[j], m_arr_of_number_of_waves[j]);
+                    this->r_output_file_buffer.ChangeValue
+                        ( m_arr_of_offsets_for_number_of_waves[j], m_arr_of_number_of_waves[j]);
 
                     this->m_arr_of_signals_for_levels[j] = false;
                 }
@@ -155,7 +150,8 @@ protected:
 
         for (int i = 0; i < this->c_number_of_levels; ++i)
         {
-            const std::string temp_level_string = std::string(WpkCompilatorStrings::level_struct_name_upper_str) + '_' + std::to_string(i);
+            const std::string temp_level_string =
+                std::string(WpkCompilatorStrings::level_struct_name_upper_str) + '_' + std::to_string(i);
 
             if (arg_en_value_type == Enums::value_types_enum::e_struct && temp_name_uppercased.starts_with(temp_level_string) )
             {

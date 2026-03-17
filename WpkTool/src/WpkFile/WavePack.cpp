@@ -154,11 +154,16 @@ void WavePack::DebugTheObject()
     if (this->m_special_hh_and_ww3_case > static_cast<uint32_t>(true))
     {
         CONSOLE_OUT.PrintLn(Mess::endl,
-                            "-- Error: ----------------------------------------------------------------------------", Mess::endl,
-                            " The instruction named DisableLevel2 should take the value 0 or 1..."                  , Mess::endl,
-                            " Wavepack name: " , this->m_wavepack_name                                              , Mess::endl,
-                            " Line: " , this->m_disable_level_2_instruction_line_number                             , Mess::endl,
-                            "--------------------------------------------------------------------------------------", Mess::endl);
+                            "-- Error: ----------------------------------------------------------------------------",
+                            Mess::endl,
+                            " The instruction named DisableLevel2 should take the value 0 or 1..."                  ,
+                            Mess::endl,
+                            " Wavepack name: " , this->m_wavepack_name                                              ,
+                            Mess::endl,
+                            " Line: " , this->m_disable_level_2_instruction_line_number                             ,
+                            Mess::endl,
+                            "--------------------------------------------------------------------------------------",
+                            Mess::endl);
 
 
         this->m_special_hh_and_ww3_case = static_cast<uint32_t>(static_cast<bool>(this->m_special_hh_and_ww3_case));
@@ -171,11 +176,16 @@ void WavePack::DebugTheObject()
         if (this->m_waves_error[i] == true)
         {
             CONSOLE_OUT.PrintLn(Mess::endl,
-                                "-- Error: ----------------------------------------------------------------------------" , Mess::endl,
-                                " The number of Waves in the Level header does not match the actual number of Waves."    , Mess::endl,
-                                " Wavepack name: " , this->m_wavepack_name                                               , Mess::endl,
-                                " Line: " , this->m_level_instruction_line_number[i]                                     , Mess::endl,
-                                "--------------------------------------------------------------------------------------" , Mess::endl);
+                                "-- Error: ----------------------------------------------------------------------------" ,
+                                Mess::endl,
+                                " The number of Waves in the Level header does not match the actual number of Waves."    ,
+                                Mess::endl,
+                                " Wavepack name: " , this->m_wavepack_name                                               ,
+                                Mess::endl,
+                                " Line: " , this->m_level_instruction_line_number[i]                                     ,
+                                Mess::endl,
+                                "--------------------------------------------------------------------------------------" ,
+                                Mess::endl);
 
             error = true;
         }
@@ -189,11 +199,16 @@ void WavePack::DebugTheObject()
             if ( single_wave.GetError() )
             {
                 CONSOLE_OUT.PrintLn(Mess::endl,
-                                    "-- Error: ----------------------------------------------------------------------------" , Mess::endl,
-                                    " Wave " , j , " in level " , i , " has an error!"                                       , Mess::endl,
-                                    " Wavepack name: " , this->m_wavepack_name                                               , Mess::endl,
-                                    " Line: " , single_wave.GetLineNumber()                                                  , Mess::endl,
-                                    "--------------------------------------------------------------------------------------" , Mess::endl);
+                                    "-- Error: ----------------------------------------------------------------------------" ,
+                                    Mess::endl,
+                                    " Wave " , j , " in level " , i , " has an error!"                                       ,
+                                    Mess::endl,
+                                    " Wavepack name: " , this->m_wavepack_name                                               ,
+                                    Mess::endl,
+                                    " Line: " , single_wave.GetLineNumber()                                                  ,
+                                    Mess::endl,
+                                    "--------------------------------------------------------------------------------------" ,
+                                    Mess::endl);
 
                 error = true;
             }
@@ -217,7 +232,11 @@ void WavePack::ShowInformations() const
 {
     uint32_t temp_number_of_levels = 0;
 
-    if (this->m_wavepack_type == WpkCompilatorGlobals::old_wpk_format_type && this->m_special_hh_and_ww3_case == static_cast<uint32_t>( false ) )
+    if  (
+            this->m_wavepack_type == WpkCompilatorGlobals::old_wpk_format_type
+            &&
+            this->m_special_hh_and_ww3_case == static_cast<uint32_t>( false )
+        )
     {
         temp_number_of_levels = this->c_number_of_levels;
     }
@@ -242,13 +261,14 @@ std::string WavePack::ToOldFormatString()
 {
     stringstream ss;
 
-    ss << WpkCompilatorStrings::wavepack_namespace_name_str << " " << this->m_wavepack_name << endl
-       << "{" << endl;
+    ss << WpkCompilatorStrings::wavepack_namespace_name_str << ' ' << this->m_wavepack_name << endl
+       << '{' << endl;
 
     if(this->m_wavepack_type == WpkCompilatorGlobals::old_wpk_format_type)
     {
-        ss << "\t" << WpkCompilatorStrings::type_instruction_name_str << " " << this->m_wavepack_type << endl;
-        ss << "\t" << WpkCompilatorStrings::disable_level_2_instruction_name_str << " " << this->m_special_hh_and_ww3_case << endl;
+        ss << '\t' << WpkCompilatorStrings::type_instruction_name_str << ' ' << this->m_wavepack_type << endl;
+        ss << '\t'
+           << WpkCompilatorStrings::disable_level_2_instruction_name_str << ' ' << this->m_special_hh_and_ww3_case << endl;
     }
 
     for(uint32_t i = 0 ; i < this->c_number_of_levels; ++i)
@@ -260,7 +280,7 @@ std::string WavePack::ToOldFormatString()
                         WpkCompilatorGlobals::StringFormatMode::OldStringFormat
                         );
 
-    ss << "}" << endl;
+    ss << '}' << endl;
 
     return ss.str();
 }
@@ -298,23 +318,23 @@ string WavePack::ToNewFormatString()
     for (uint32_t i = 0; i < temp_number_of_levels; ++i)
     {
         ss << CW::ConvertTrivialTypeToString(this->m_number_of_waves_in_level[i])
-        << " " << WpkCompilatorStrings::number_of_waves_in_level_value_name_str << i << " = "
-        << CompilatorStrings::count_fn_str << ";"
+        << ' ' << WpkCompilatorStrings::number_of_waves_in_level_value_name_str << i << " = "
+        << CompilatorStrings::count_fn_str << ';'
         << endl;
     }
 
     ss  << endl
        << CW::ConvertTrivialTypeToString( this->GetDataSize() )
-        << " "
+        << ' '
         << WpkCompilatorStrings::data_size_value_name_str
         << " = "
         << WpkCompilatorStrings::measure_all_value_sizes_after_this_instruction_fn_name_str
-        << ";"
+        << ';'
         << endl
         << endl
 
-        << CompilatorValueTypes::c_namespace_type_str << " " << m_wavepack_name << endl
-        << "{" << endl;
+        << CompilatorValueTypes::c_namespace_type_str << ' ' << m_wavepack_name << endl
+        << '{' << endl;
 
 
     for(uint32_t i = 0 ; i < temp_number_of_levels; ++i)
@@ -343,14 +363,14 @@ void WavePack::ExportWaveVector( const std::vector<Wave>& arg_wave_vector,
         switch (arg_string_format_mode)
         {
             case WpkCompilatorGlobals::StringFormatMode::OldStringFormat:
-                arg_ss  << "\t" << WpkCompilatorStrings::level_struct_name_str
+                arg_ss  << '\t' << WpkCompilatorStrings::level_struct_name_str
                         << arg_level_number << " " << arg_number_of_waves << endl
                         << "\t{" << endl;
             break;
 
             case WpkCompilatorGlobals::StringFormatMode::NewStringFormat:
-                arg_ss  << "\t" << CompilatorValueTypes::c_struct_type_str
-                        << " "  << WpkCompilatorStrings::level_struct_name_str << "_" << arg_level_number << endl
+                arg_ss  << '\t' << CompilatorValueTypes::c_struct_type_str
+                        << ' '  << WpkCompilatorStrings::level_struct_name_str << '_' << arg_level_number << endl
                         << "\t{" << endl;
             break;
 
