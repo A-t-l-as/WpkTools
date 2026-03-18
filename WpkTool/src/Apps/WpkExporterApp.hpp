@@ -17,7 +17,7 @@ public:
     WpkExporterApp()
     {}
 
-    void Run(int my_argc, char* my_argv[]) override
+    int Run(int my_argc, char* my_argv[]) override
     {
         std::filesystem::path input_file_path;
         std::string output_format = {};
@@ -76,6 +76,8 @@ public:
         input_wpk_file.ExportTo(output_file_path, output_format);
 
         CONSOLE_OUT.PrintLn("DONE!");
+
+        return EXIT_SUCCESS;
     }
 
 
@@ -95,12 +97,12 @@ private:
         {
             CONSOLE_IN.Scan(output_format);
 
-            if (!Misc::CheckAnswerWithEveryElementInVec(output_format, correct_formats))
+            if (!Misc::CheckThatElementExistInVec(output_format, correct_formats))
             {
                 CONSOLE_OUT.PrintLn("Choose from the given formats...");
             }
 
-        } while (!Misc::CheckAnswerWithEveryElementInVec(output_format, correct_formats));
+        } while (!Misc::CheckThatElementExistInVec(output_format, correct_formats));
     }
 
 
@@ -114,7 +116,7 @@ private:
             '-' + std::string(Formats::cpp_format_str)
         };
 
-        if (!Misc::CheckAnswerWithEveryElementInVec(output_format, correct_formats))
+        if (!Misc::CheckThatElementExistInVec(output_format, correct_formats))
         {
             CONSOLE_OUT.PrintLn("You have entered an incorrect output format.", Mess::endl,
                                 "Use: ", program_name, "-e <wpk_file> <",

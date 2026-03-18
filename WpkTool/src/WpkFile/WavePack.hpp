@@ -99,7 +99,7 @@ private:
                          uint32_t arg_number_of_waves,
                          uint32_t arg_level_number,
                          std::stringstream& ss,
-                         const WpkCompilatorGlobals::StringFormatMode& arg_string_format_mode);
+                         const WpkCompilatorGlobals::ENStringFormatMode& arg_string_format_mode);
 
 
     bool ParseLevelHeader(  const std::string& arg_line,

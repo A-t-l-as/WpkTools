@@ -277,7 +277,7 @@ std::string WavePack::ToOldFormatString()
                         this->m_number_of_waves_in_level[i],
                         i,
                         ss,
-                        WpkCompilatorGlobals::StringFormatMode::OldStringFormat
+                        WpkCompilatorGlobals::ENStringFormatMode::OldStringFormat
                         );
 
     ss << '}' << endl;
@@ -343,7 +343,7 @@ string WavePack::ToNewFormatString()
                         this->m_number_of_waves_in_level[i],
                         i,
                         ss,
-                        WpkCompilatorGlobals::StringFormatMode::NewStringFormat
+                        WpkCompilatorGlobals::ENStringFormatMode::NewStringFormat
                         );
 
     ss << "};" << endl;
@@ -356,19 +356,19 @@ void WavePack::ExportWaveVector( const std::vector<Wave>& arg_wave_vector,
                                 uint32_t arg_number_of_waves,
                                 uint32_t arg_level_number,
                                 std::stringstream& arg_ss,
-                                const WpkCompilatorGlobals::StringFormatMode& arg_string_format_mode)
+                                const WpkCompilatorGlobals::ENStringFormatMode& arg_string_format_mode)
 {
     if (arg_number_of_waves != 0)
     {
         switch (arg_string_format_mode)
         {
-            case WpkCompilatorGlobals::StringFormatMode::OldStringFormat:
+            case WpkCompilatorGlobals::ENStringFormatMode::OldStringFormat:
                 arg_ss  << '\t' << WpkCompilatorStrings::level_struct_name_str
                         << arg_level_number << " " << arg_number_of_waves << endl
                         << "\t{" << endl;
             break;
 
-            case WpkCompilatorGlobals::StringFormatMode::NewStringFormat:
+            case WpkCompilatorGlobals::ENStringFormatMode::NewStringFormat:
                 arg_ss  << '\t' << CompilatorValueTypes::c_struct_type_str
                         << ' '  << WpkCompilatorStrings::level_struct_name_str << '_' << arg_level_number << endl
                         << "\t{" << endl;
@@ -385,11 +385,11 @@ void WavePack::ExportWaveVector( const std::vector<Wave>& arg_wave_vector,
 
             switch (arg_string_format_mode)
             {
-                case WpkCompilatorGlobals::StringFormatMode::OldStringFormat:
+                case WpkCompilatorGlobals::ENStringFormatMode::OldStringFormat:
                     arg_ss << single_wave.ToOldFormatString();
                 break;
 
-                case WpkCompilatorGlobals::StringFormatMode::NewStringFormat:
+                case WpkCompilatorGlobals::ENStringFormatMode::NewStringFormat:
                     arg_ss << single_wave.ToNewFormatString();
                 break;
 
@@ -403,11 +403,11 @@ void WavePack::ExportWaveVector( const std::vector<Wave>& arg_wave_vector,
 
         switch (arg_string_format_mode)
         {
-            case WpkCompilatorGlobals::StringFormatMode::OldStringFormat:
+            case WpkCompilatorGlobals::ENStringFormatMode::OldStringFormat:
                 arg_ss << "\t}" << endl;
             break;
 
-            case WpkCompilatorGlobals::StringFormatMode::NewStringFormat:
+            case WpkCompilatorGlobals::ENStringFormatMode::NewStringFormat:
                 arg_ss << "\t};" << endl;
             break;
 

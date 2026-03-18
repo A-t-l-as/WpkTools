@@ -22,7 +22,7 @@ public:
     WpkImporterApp()
     {}
 
-    void Run(int my_argc, char* my_argv[]) override
+    int Run(int my_argc, char* my_argv[]) override
     {
         std::filesystem::path input_file_path;
 
@@ -109,6 +109,7 @@ public:
             exit(EXIT_FAILURE);
         }
 
+        return EXIT_SUCCESS;
     }
 
 

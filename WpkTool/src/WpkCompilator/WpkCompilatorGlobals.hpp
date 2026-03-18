@@ -15,7 +15,7 @@ constexpr uint32_t new_wpk_format_type = 1;
 constexpr uint32_t delayed_const_value = 1;
 constexpr uint32_t null_const_value = 0;
 
-enum StringFormatMode
+enum class ENStringFormatMode
 {
     OldStringFormat,
     NewStringFormat

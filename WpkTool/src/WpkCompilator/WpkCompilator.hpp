@@ -92,7 +92,7 @@ protected:
     (
         std::string& arg_instruction,
         std::string& arg_value_type,
-        Enums::value_types_enum& arg_en_value_type,
+        Enums::ENCompilatorValueTypes& arg_en_value_type,
         std::string& arg_name,
         std::string& arg_value
     )
@@ -100,7 +100,7 @@ protected:
     {
         // measure_all_value_sizes_after_this_instruction();
         if (
-            arg_en_value_type == Enums::value_types_enum::e_uint32_t
+            arg_en_value_type == Enums::ENCompilatorValueTypes::e_uint32_t
             &&
             arg_name == "data_size"
             &&
@@ -116,7 +116,7 @@ protected:
         for (int i = 0 ; i < this->c_number_of_levels ; ++i)
         {
             if (
-                arg_en_value_type == Enums::value_types_enum::e_uint32_t
+                arg_en_value_type == Enums::ENCompilatorValueTypes::e_uint32_t
                 &&
                 arg_name == ("number_of_waves_in_level_" + std::to_string(i))
                 &&
@@ -137,7 +137,7 @@ protected:
     bool SpecialAction0(
         std::string& arg_instruction,
         std::string& arg_value_type,
-        Enums::value_types_enum& arg_en_value_type,
+        Enums::ENCompilatorValueTypes& arg_en_value_type,
         std::string& arg_name,
         std::string& arg_value
         ) override
@@ -153,7 +153,11 @@ protected:
             const std::string temp_level_string =
                 std::string(WpkCompilatorStrings::level_struct_name_upper_str) + '_' + std::to_string(i);
 
-            if (arg_en_value_type == Enums::value_types_enum::e_struct && temp_name_uppercased.starts_with(temp_level_string) )
+            if (
+                arg_en_value_type == Enums::ENCompilatorValueTypes::e_struct
+                &&
+                temp_name_uppercased.starts_with(temp_level_string)
+                )
             {
                 DEBUG_PRINT("LEVEL ");
                 DEBUG_PRINT(i);
@@ -172,7 +176,7 @@ protected:
     bool SpecialAction1(
         std::string& arg_instruction,
         std::string& arg_value_type,
-        Enums::value_types_enum& arg_en_value_type,
+        Enums::ENCompilatorValueTypes& arg_en_value_type,
         std::string& arg_name,
         std::string& arg_value
         ) override
