@@ -15,7 +15,13 @@ public:
         m_wavepack_type(arg_wavepack_type),
 
         m_error(false),
-        m_line_number(0)
+        m_line_number(0),
+        m_volume(0),
+        m_distance_min_a(0),
+        m_distance_max_a(0),
+
+        m_sound_flags(0),
+        m_play_priority(0)
     {}
 
     ~Wave()
@@ -28,13 +34,18 @@ public:
         switch (this->m_wavepack_type)
         {
             case WpkCompilatorGlobals::old_wpk_format_type:
-                bin_file.ReadValue(this->m_a[0]);
+                bin_file.ReadValue(this->m_volume);
                 this->m_wave_path = bin_file.ReadStringWithoutLen();
             break;
 
             case WpkCompilatorGlobals::new_wpk_format_type:
-                bin_file.ReadArray(this->m_a, this->a_size);
-                bin_file.ReadArray(this->m_b, this->b_size);
+                bin_file.ReadValue(this->m_volume);
+                bin_file.ReadValue(this->m_distance_min_a);
+                bin_file.ReadValue(this->m_distance_max_a);
+
+                bin_file.ReadValue(this->m_sound_flags);
+                bin_file.ReadValue(this->m_play_priority);
+
                 bin_file.ReadArray(this->m_c, this->c_size);
                 this->m_wave_path = bin_file.ReadStringWithoutLen();
             break;
@@ -50,14 +61,20 @@ public:
         switch (this->m_wavepack_type)
         {
             case WpkCompilatorGlobals::old_wpk_format_type:
-                output_bin_file.WriteValue(this->m_a[0]);
+                output_bin_file.WriteValue(this->m_volume);
                 output_bin_file.WriteString(this->m_wave_path);
                 output_bin_file.WriteValue('\0');
             break;
 
             case WpkCompilatorGlobals::new_wpk_format_type:
-                output_bin_file.WriteValue(this->m_a);
-                output_bin_file.WriteValue(this->m_b);
+                output_bin_file.WriteValue(this->m_volume);
+                output_bin_file.WriteValue(this->m_distance_min_a);
+                output_bin_file.WriteValue(this->m_distance_max_a);
+
+
+                output_bin_file.WriteValue(this->m_sound_flags);
+                output_bin_file.WriteValue(this->m_play_priority);
+
                 output_bin_file.WriteValue(this->m_c);
                 output_bin_file.WriteString(this->m_wave_path);
                 output_bin_file.WriteValue('\0');
@@ -76,8 +93,8 @@ public:
 
         if (this->m_wavepack_type == WpkCompilatorGlobals::new_wpk_format_type)
         {
-            result = sizeof(this->m_a) +
-                     sizeof(this->m_b) +
+            result = a_size +
+                     b_size +
                      sizeof(this->m_c) +
                      static_cast<uint32_t>(this->m_wave_path.length()) +
                      sizeof(char); // \0
@@ -86,7 +103,7 @@ public:
 
         if (this->m_wavepack_type == WpkCompilatorGlobals::old_wpk_format_type)
         {
-            result = sizeof(this->m_a[0]) +
+            result = sizeof(m_volume) +
                      static_cast<uint32_t>(this->m_wave_path.length()) +
                      sizeof(char); // \0
         }
@@ -113,8 +130,13 @@ private:
     constexpr const unsigned int static c_size = 3;
     constexpr const size_t       static size_of_temp_values = a_size + b_size + c_size;
 
-    uint32_t m_a[a_size] = { 0 };
-    uint8_t  m_b[b_size] = { 0 };
+    uint32_t m_volume; // volume
+    uint32_t m_distance_min_a; //distanceMinA
+    uint32_t m_distance_max_a; //distanceMaxA
+
+    uint8_t  m_sound_flags; //soundFlags
+    uint8_t  m_play_priority; //playPriority
+
     uint32_t m_c[c_size] = { 0 };
 
     std::string m_wave_path;
