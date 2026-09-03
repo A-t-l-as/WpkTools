@@ -30,6 +30,7 @@ namespace WpkCompilatorStrings
     constexpr char disable_level_2_instruction_name_str[] = "DisableLevel2";
     constexpr char disable_level_2_instruction_name_upper_str[] = "DISABLELEVEL2";
 
+    constexpr char delay_const_str[]   = "delay";
     constexpr char delayed_const_str[] = "delayed";
     constexpr char delayed_const_uppercase_str[] = "DELAYED";
 

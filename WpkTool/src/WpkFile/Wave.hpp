@@ -21,7 +21,11 @@ public:
         m_distance_max_a(0),
 
         m_sound_flags(0),
-        m_play_priority(0)
+        m_play_priority(0),
+
+        m_const_value_0(0),
+        m_delay(0),
+        m_const_value_2(0)
     {}
 
     ~Wave()
@@ -46,7 +50,10 @@ public:
                 bin_file.ReadValue(this->m_sound_flags);
                 bin_file.ReadValue(this->m_play_priority);
 
-                bin_file.ReadArray(this->m_c, this->c_size);
+                bin_file.ReadValue(this->m_const_value_0);
+                bin_file.ReadValue(this->m_delay);
+                bin_file.ReadValue(this->m_const_value_2);
+
                 this->m_wave_path = bin_file.ReadStringWithoutLen();
             break;
 
@@ -75,7 +82,10 @@ public:
                 output_bin_file.WriteValue(this->m_sound_flags);
                 output_bin_file.WriteValue(this->m_play_priority);
 
-                output_bin_file.WriteValue(this->m_c);
+                output_bin_file.WriteValue(this->m_const_value_0);
+                output_bin_file.WriteValue(this->m_delay);
+                output_bin_file.WriteValue(this->m_const_value_2);
+
                 output_bin_file.WriteString(this->m_wave_path);
                 output_bin_file.WriteValue('\0');
             break;
@@ -95,7 +105,7 @@ public:
         {
             result = a_size +
                      b_size +
-                     sizeof(this->m_c) +
+                     c_size +
                      static_cast<uint32_t>(this->m_wave_path.length()) +
                      sizeof(char); // \0
         }
@@ -137,7 +147,9 @@ private:
     uint8_t  m_sound_flags; //soundFlags
     uint8_t  m_play_priority; //playPriority
 
-    uint32_t m_c[c_size] = { 0 };
+    uint32_t m_const_value_0;
+    uint32_t m_delay;
+    uint32_t m_const_value_2;
 
     std::string m_wave_path;
 };

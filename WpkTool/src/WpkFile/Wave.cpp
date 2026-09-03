@@ -160,8 +160,10 @@ void Wave::ParseFrom(const string& uppercased_instruction, const string& origina
         this->m_sound_flags   = static_cast<uint8_t>(temp_values[    this->a_size]);
         this->m_play_priority = static_cast<uint8_t>(temp_values[1 + this->a_size]);
    
-        for(int i = 0 ; i < this->c_size; ++i)
-            this->m_c[i] = static_cast<uint32_t>(temp_values[i + this->a_size + this->b_size]);
+        this->m_const_value_0 = static_cast<uint32_t>(temp_values[    this->a_size + this->b_size]);
+        this->m_delay = static_cast<uint32_t>(temp_values[1 + this->a_size + this->b_size]);
+        this->m_const_value_2 = static_cast<uint32_t>(temp_values[2 + this->a_size + this->b_size]);
+
 
 
         DEBUG_PRINT(
@@ -209,10 +211,10 @@ std::string Wave::ToOldFormatString() const
                 << " "
                 << static_cast<uint32_t>(this->m_play_priority)
                 << " "
-                << this->m_c[0]
+                << this->m_const_value_0
                 << " ";
 
-                if (this->m_c[1] == WpkCompilatorGlobals::delayed_const_value)
+                if (this->m_delay == WpkCompilatorGlobals::delayed_const_value)
                 {
                     ss << WpkCompilatorStrings::delayed_const_str << ' ';
                 }
@@ -231,6 +233,9 @@ std::string Wave::ToOldFormatString() const
 string Wave::ToNewFormatString() const
 {
     stringstream ss;
+
+    const uint32_t temp_const_values_array[Wave::c_size] =
+        { m_const_value_0, m_delay, m_const_value_2 };
 
     switch (this->m_wavepack_type)
     {
@@ -265,15 +270,17 @@ string Wave::ToNewFormatString() const
             CW::WriteTrivialValue(ss, "play_priority", this->m_play_priority, false);
             ss << '\t';
 
-
             for (int i = 0; i < this->c_size; ++i)
             {
                 if (i == 1)
                 {
-                    ss << CompilatorValueTypes::c_32bituniquekey_type_str << " " << "c_" << i << " = ";
+                    ss << CompilatorValueTypes::c_32bituniquekey_type_str
+                       << " "
+                       << WpkCompilatorStrings::delay_const_str
+                       << " = ";
 
 
-                    switch (this->m_c[i])
+                    switch (temp_const_values_array[i])
                     {
                         case WpkCompilatorGlobals::null_const_value:
                             ss << WpkCompilatorStrings::null_const_uppercase_str;
@@ -284,7 +291,7 @@ string Wave::ToNewFormatString() const
                         break;
 
                         default:
-                            ss << this->m_c[i];
+                            ss << temp_const_values_array[i];
                         break;
                     }
 
@@ -293,12 +300,13 @@ string Wave::ToNewFormatString() const
                     continue;
                 }
 
-                CW::WriteTrivialValue(ss, "c_" + to_string(i), this->m_c[i], false);
+                CW::WriteTrivialValue(ss, "c_" + to_string(i), temp_const_values_array[i], false);
                 ss << '\t';
             }
 
             ss << CompilatorValueTypes::c_char_type_str << " "
-               << WpkCompilatorStrings::wave_path_name_str << "[] = \"" << this->m_wave_path << "\"; };\t   ";
+               << WpkCompilatorStrings::wave_path_name_str <<
+                "[] = \"" << this->m_wave_path << "\"; };\t   ";
         break;
 
         default:
