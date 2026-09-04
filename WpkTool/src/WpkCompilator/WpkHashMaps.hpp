@@ -13,9 +13,14 @@ public:
 
     void InitializeHashMapsOfConsts() override
     {
-        m_list_of_32_bit_consts[WpkCompilatorStrings::null_const_uppercase_str]    = WpkCompilatorGlobals::null_const_value;
-        m_list_of_32_bit_consts[WpkCompilatorStrings::delayed_const_str]           = WpkCompilatorGlobals::delayed_const_value;
-        m_list_of_32_bit_consts[WpkCompilatorStrings::delayed_const_uppercase_str] = WpkCompilatorGlobals::delayed_const_value;
+        m_list_of_32_bit_consts[WpkCompilatorStrings::null_const_uppercase_str]    =
+            WpkCompilatorGlobals::null_const_value;
+
+        m_list_of_32_bit_consts[WpkCompilatorStrings::delayed_const_str]           =
+            WpkCompilatorGlobals::delayed_const_value;
+
+        m_list_of_32_bit_consts[WpkCompilatorStrings::delayed_const_uppercase_str] =
+            WpkCompilatorGlobals::delayed_const_value;
     }
 
     void InitializeHashMapOfMasks() override

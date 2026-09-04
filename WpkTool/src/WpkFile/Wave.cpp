@@ -243,7 +243,7 @@ string Wave::ToNewFormatString() const
 
             ss  << CompilatorValueTypes::c_struct_type_str << " " << WpkCompilatorStrings::wave_struct_name_str << "{ ";
 
-            CW::WriteTrivialValue(ss, "volume", this->m_volume, false);
+            CW::WriteTrivialValue(ss, WpkCompilatorStrings::volume_value_name_str, this->m_volume, false);
             ss  << '\t';
 
             ss  << CompilatorValueTypes::c_char_type_str << " "
@@ -255,19 +255,19 @@ string Wave::ToNewFormatString() const
 
             ss << CompilatorValueTypes::c_struct_type_str << " " << WpkCompilatorStrings::wave_struct_name_str << "{ ";
 
-            CW::WriteTrivialValue(ss, "volume", this->m_volume, false);
+            CW::WriteTrivialValue(ss, WpkCompilatorStrings::volume_value_name_str, this->m_volume, false);
             ss << '\t';
 
-            CW::WriteTrivialValue(ss, "distance_min_a", this->m_distance_min_a, false);
+            CW::WriteTrivialValue(ss, WpkCompilatorStrings::distance_min_a_value_name_str, this->m_distance_min_a, false);
             ss << '\t';
 
-            CW::WriteTrivialValue(ss, "distance_max_a", this->m_distance_max_a, false);
+            CW::WriteTrivialValue(ss, WpkCompilatorStrings::distance_max_a_value_name_str, this->m_distance_max_a, false);
             ss << '\t';
 
-            CW::WriteTrivialValue(ss, "sound_flags", this->m_sound_flags, false);
+            CW::WriteTrivialValue(ss, WpkCompilatorStrings::sound_flags_value_name_str, this->m_sound_flags, false);
             ss << '\t';
 
-            CW::WriteTrivialValue(ss, "play_priority", this->m_play_priority, false);
+            CW::WriteTrivialValue(ss, WpkCompilatorStrings::play_priority_value_name_str, this->m_play_priority, false);
             ss << '\t';
 
             for (int i = 0; i < this->c_size; ++i)

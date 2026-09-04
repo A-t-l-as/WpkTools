@@ -6,16 +6,15 @@
 #include <vector>
 #include "Wave.hpp"
 #include "../WpkCompilator/WpkCompilatorGlobals.hpp"
+#include "WavePackBase.hpp"
 
-class WavePack
+class WavePack : public WavePackBase
 {
 public:
 
     WavePack(std::string arg_wavepack_name = std::string()) :
-        m_wavepack_name(arg_wavepack_name),
-        m_wavepack_type(WpkCompilatorGlobals::new_wpk_format_type),
+        WavePackBase(arg_wavepack_name),
 
-        m_special_hh_and_ww3_case(static_cast<uint32_t>(false)),
         m_level_index(0),
         m_level_mode(false),
 
@@ -56,23 +55,27 @@ public:
         return temp_data_size;
     }
 
-private:
-    std::string m_wavepack_name;
+public:
 
+    friend void to_json(ordered_json& j, const WavePack& wp)
+    {
+        to_json(j, static_cast<const WavePackBase&>(wp));
+    }
+
+    friend void from_json(const ordered_json& j, WavePack& wp)
+    {
+        from_json(j, static_cast<WavePackBase&>(wp));
+        wp.RecalculateWaveCounts();
+    }
+
+private:
     constexpr const unsigned int static format_size = 4;
     uint8_t m_format[format_size] = { 'W', 'P', 'K', '\0' };
 
-    uint32_t m_wavepack_type;
-    uint32_t m_special_hh_and_ww3_case;
-
-    constexpr const unsigned int static c_number_of_levels = 3;
-
-    uint32_t m_number_of_waves_in_level[c_number_of_levels] = { 0 };
-
-    std::vector<Wave> m_wave_vector_level[c_number_of_levels] = {};
+    uint32_t m_number_of_waves_in_level[WavePackBase::c_number_of_levels] = { 0 };
+    uint32_t m_number_of_waves_in_level_checksum[WavePackBase::c_number_of_levels] = {0};
 
     uint32_t m_level_index;
-    uint32_t m_number_of_waves_in_level_checksum[c_number_of_levels] = {0};
 
     bool m_level_mode;
 
@@ -120,8 +123,22 @@ private:
                     bool arg_level_mode);
 
 
+private:
+
+    void RecalculateWaveCounts()
+    {
+        for (uint32_t i = 0; i < c_number_of_levels; ++i)
+        {
+            this->m_number_of_waves_in_level[i] =
+                static_cast<uint32_t>(this->m_wave_vector_level[i].size());
+
+            this->m_number_of_waves_in_level_checksum[i] =
+                this->m_number_of_waves_in_level[i];
+        }
+    }
+
 };
 
 
 
-#endif // !WAVE_PACK_HPP
+#endif // WAVE_PACK_HPP end

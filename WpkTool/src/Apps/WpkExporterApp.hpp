@@ -35,7 +35,8 @@ public:
 
         if (input_file_path.extension().string() != Formats::wpk_format_str_with_dot)
         {
-            CONSOLE_OUT.PrintLn("The specified file is not a .wpk file. The program terminates with an error.");
+            CONSOLE_OUT.PrintLn
+                ("The specified file is not a .wpk file. The program terminates with an error.");
             exit(EXIT_FAILURE);
         }
 
@@ -86,12 +87,22 @@ private:
 
     void StandardProgramExecution(std::filesystem::path& input_file_path, std::string& output_format)
     {
-        const std::vector<std::string> correct_formats = { Formats::txt_format_str, Formats::cpp_format_str };
+        const std::vector<std::string> correct_formats =
+            { Formats::txt_format_str, Formats::cpp_format_str, Formats::json_format_str  };
 
         CONSOLE_OUT.PrintLn("Enter the name of the input file:");
         CONSOLE_IN.Scan(input_file_path);
 
-        CONSOLE_OUT.PrintLn("Choose format [", Formats::txt_format_str, "/", Formats::cpp_format_str, "]:");
+        CONSOLE_OUT.PrintLn
+        (
+            "Choose format [",
+            Formats::txt_format_str,
+            "/",
+            Formats::cpp_format_str,
+            "/",
+            Formats::json_format_str,
+            "]:"
+        );
 
         do
         {
@@ -113,7 +124,9 @@ private:
             Formats::txt_format_str,
             '-' + std::string(Formats::txt_format_str),
             Formats::cpp_format_str,
-            '-' + std::string(Formats::cpp_format_str)
+            '-' + std::string(Formats::cpp_format_str),
+            Formats::json_format_str,
+            '-' + std::string(Formats::json_format_str)
         };
 
         if (!Misc::CheckThatElementExistInVec(output_format, correct_formats))
@@ -121,7 +134,8 @@ private:
             CONSOLE_OUT.PrintLn("You have entered an incorrect output format.", Mess::endl,
                                 "Use: ", program_name, "-e <wpk_file> <",
                                 correct_formats[0], ",", correct_formats[1], ",",
-                                correct_formats[2], ",", correct_formats[3], ">");
+                                correct_formats[2], ",", correct_formats[3], ",",
+                                correct_formats[4], ",", correct_formats[5], ">");
 
             exit(EXIT_FAILURE);
         }
@@ -134,6 +148,11 @@ private:
         if (output_format == correct_formats[3])
         {
             output_format = Formats::cpp_format_str;
+        }
+
+        if (output_format == correct_formats[5])
+        {
+            output_format = Formats::json_format_str;
         }
     }
 

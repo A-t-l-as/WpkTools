@@ -5,7 +5,6 @@ using namespace std;
 
 #define DEBUG_MAIN false
 
-
 int main(int argc, char* argv[])
 {
     WpkToolApp my_wpk_tool_app;

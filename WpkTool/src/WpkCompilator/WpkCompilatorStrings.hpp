@@ -21,7 +21,8 @@ namespace WpkCompilatorStrings
     constexpr char wave_struct_name_upper_str[] = "WAVE";
 
     constexpr char wave_struct_name_with_space_str[] = "WAVE ";
-    constexpr std::size_t wave_struct_name_with_space_len = sizeof(WpkCompilatorStrings::wave_struct_name_with_space_str) - 1;
+    constexpr std::size_t wave_struct_name_with_space_len =
+        sizeof(WpkCompilatorStrings::wave_struct_name_with_space_str) - 1;
 
     constexpr char type_instruction_name_str[] = "Type";
 
@@ -45,6 +46,18 @@ namespace WpkCompilatorStrings
 
 
     constexpr char data_size_value_name_str[] = "data_size";
+
+
+    constexpr char volume_value_name_str[] = "volume";
+
+    constexpr char distance_min_a_value_name_str[] = "distance_min_a";
+
+    constexpr char distance_max_a_value_name_str[] = "distance_max_a";
+
+    constexpr char sound_flags_value_name_str[] = "sound_flags";
+
+    constexpr char play_priority_value_name_str[] = "play_priority";
+
 }
 
 #endif // !WPK_COMPILATOR_STRINGS_HPP

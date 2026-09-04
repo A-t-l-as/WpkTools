@@ -8,6 +8,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(WpkTool
     src/main.cpp
     src/Apps/WpkExporterApp.hpp src/Apps/WpkImporterApp.hpp src/Apps/WpkToolApp.hpp src/WpkCompilator/TxtToWpkOldCompilator.hpp   src/WpkCompilator/WpkCompilator.hpp src/WpkCompilator/WpkCompilatorGlobals.hpp src/WpkCompilator/WpkCompilatorStrings.hpp src/WpkCompilator/WpkHashMaps.hpp src/WpkFile/Wave.cpp src/WpkFile/Wave.hpp src/WpkFile/WavePack.cpp src/WpkFile/WavePack.hpp src/WpkFile/WholeWpkFilesContainer.hpp src/WpkFile/WpkFile.hpp
+    src/Other/json.hpp
+    src/WpkCompilator/WpkJsonStrings.hpp
+    src/WpkFile/WaveBase.hpp
+    src/WpkFile/WavePackBase.hpp
+
 
 )
 

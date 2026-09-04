@@ -7,31 +7,29 @@
 #include "File/BinFile.hpp"
 #include "Console/Console.hpp"
 
-class Wave
+#include "WaveBase.hpp"
+
+class Wave : public WaveBase
 {
 public:
+
     Wave(uint32_t arg_wavepack_type = WpkCompilatorGlobals::new_wpk_format_type) :
-        m_wave_path(std::string()),
-        m_wavepack_type(arg_wavepack_type),
+        WaveBase(),
 
         m_error(false),
         m_line_number(0),
-        m_volume(0),
-        m_distance_min_a(0),
-        m_distance_max_a(0),
-
-        m_sound_flags(0),
-        m_play_priority(0),
-
-        m_const_value_0(0),
-        m_delay(0),
-        m_const_value_2(0)
+        m_wavepack_type(arg_wavepack_type)
     {}
 
     ~Wave()
     {}
 
-    void ParseFrom(const std::string& uppercased_instruction, const std::string& original_instruction, size_t line_number);
+    void ParseFrom
+    (
+        const std::string& uppercased_instruction,
+        const std::string& original_instruction,
+        size_t line_number
+    );
 
     void ReadFrom(BinFile& bin_file)
     {
@@ -103,9 +101,9 @@ public:
 
         if (this->m_wavepack_type == WpkCompilatorGlobals::new_wpk_format_type)
         {
-            result = a_size +
-                     b_size +
-                     c_size +
+            result = a_size * sizeof(uint32_t) +
+                     b_size * sizeof(uint8_t) +
+                     c_size * sizeof(uint32_t) +
                      static_cast<uint32_t>(this->m_wave_path.length()) +
                      sizeof(char); // \0
         }
@@ -128,30 +126,12 @@ public:
     std::string ToOldFormatString() const;
     std::string ToNewFormatString() const;
 
+
 private:
     bool m_error;
-
     size_t m_line_number;
-
     uint32_t m_wavepack_type;
 
-    constexpr const unsigned int static a_size = 3;
-    constexpr const unsigned int static b_size = 2;
-    constexpr const unsigned int static c_size = 3;
-    constexpr const size_t       static size_of_temp_values = a_size + b_size + c_size;
-
-    uint32_t m_volume; // volume
-    uint32_t m_distance_min_a; //distanceMinA
-    uint32_t m_distance_max_a; //distanceMaxA
-
-    uint8_t  m_sound_flags; //soundFlags
-    uint8_t  m_play_priority; //playPriority
-
-    uint32_t m_const_value_0;
-    uint32_t m_delay;
-    uint32_t m_const_value_2;
-
-    std::string m_wave_path;
 };
 
 

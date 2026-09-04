@@ -47,9 +47,9 @@ public:
             //Poprawka dla measure_all_value_sizes_after_this_instruction();
             if (this->m_measure_error_signal == true)
             {
-                uint32_t data_size = static_cast<uint32_t>(
-                    this->r_output_file_buffer.GetFileLength() - (this->m_data_size_offset + sizeof(data_size))
-                    );
+                uint32_t data_size =
+                static_cast<uint32_t>
+                (this->r_output_file_buffer.GetFileLength() - (this->m_data_size_offset + sizeof(data_size)));
 
                 CONSOLE_OUT.PrintLn(data_size);
 
@@ -184,7 +184,8 @@ protected:
         // SLOT 1 : ------------------------------
 
         DEBUG_PRINT("TEMP UPPERCASED = |"); DEBUG_PRINT(temp_name_uppercased);  DEBUG_PRINT("\n");
-        DEBUG_PRINT("::wave_struct_name = |"); DEBUG_PRINT(WpkCompilatorStrings::wave_struct_name_upper_str); DEBUG_PRINT("|\n");
+        DEBUG_PRINT("::wave_struct_name = |");
+        DEBUG_PRINT(WpkCompilatorStrings::wave_struct_name_upper_str); DEBUG_PRINT("|\n");
 
         if (temp_name_uppercased.starts_with(WpkCompilatorStrings::wave_struct_name_upper_str) )
         {
