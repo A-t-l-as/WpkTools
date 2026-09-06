@@ -38,7 +38,7 @@ Program obsługuje trzy formaty pośrednie, zarówno przy eksporcie, jak i przy 
 | `cpp` | Format w stylu C++, pozwala edytować dosłownie każdą wartość. Jeden plik = jeden wavepack. |
 | `json` | **Nowość w 2.0.0.** Ustrukturyzowany format czytelny dla człowieka i łatwy do edycji w dowolnym edytorze tekstu bez pilnowania wcięć/składni jak w `.txt`. |
 
-### Użycie — przełączniki
+### Użycie - przełączniki
 
 Program uruchamiany bez argumentów albo z nieprawidłowymi argumentami przechodzi w **tryb interaktywny** - sam odpytuje w konsoli o kolejne parametry i opcje (nazwę pliku, format itd.).
 
@@ -223,7 +223,7 @@ Opis pól:
 
 Jeśli chcemy zachować format zgodny z konkretną grą, nie zmieniamy pól `type` i `disableLevel2`, tak samo jak w przypadku instrukcji `Type`/`DisableLevel2` w `.txt`.
 
-### WpkJsonEditor.py — GUI do edycji plików JSON
+### WpkJsonEditor.py - GUI do edycji plików JSON
 
 Do paczki dołączony jest dodatkowy skrypt **`WpkJsonEditor.py`** - proste GUI (Tkinter, wyłącznie biblioteka standardowa Pythona) do wygodnej edycji plików `.json` wyeksportowanych przez `WpkTool.exe`, bez ręcznego grzebania w kodzie JSON.
 
@@ -299,7 +299,7 @@ The program supports three intermediate formats, for both export and import:
 | `cpp` | C++-style format, allows editing literally every value. One file = one wavepack. |
 | `json` | **New in 2.0.0.** A structured, human-readable format that's easy to edit in any text editor without worrying about indentation/syntax like in `.txt`. |
 
-### Usage — switches
+### Usage - switches
 
 Running the program with no arguments, or with invalid arguments, starts an **interactive mode** - it will prompt you in the console for the required parameters and options (file name, format, etc.).
 
@@ -463,7 +463,7 @@ Field reference:
 
 If you want to preserve a specific game's format, don't change the `type` and `disableLevel2` fields — just like with the `Type`/`DisableLevel2` instructions in `.txt`.
 
-### WpkJsonEditor.py — a JSON editing GUI
+### WpkJsonEditor.py - a JSON editing GUI
 
 The package also includes an additional script, **`WpkJsonEditor.py`** - a simple GUI (Tkinter, Python standard library only) for conveniently editing `.json` files exported by `WpkTool.exe`, without having to hand-edit the JSON.
 
