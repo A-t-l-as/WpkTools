@@ -227,6 +227,8 @@ Jeśli chcemy zachować format zgodny z konkretną grą, nie zmieniamy pól `typ
 
 Do paczki dołączony jest dodatkowy skrypt **`WpkJsonEditor.py`** - proste GUI (Tkinter, wyłącznie biblioteka standardowa Pythona) do wygodnej edycji plików `.json` wyeksportowanych przez `WpkTool.exe`, bez ręcznego grzebania w kodzie JSON.
 
+![Gui dla Wpk Json Editor](Docs/Gui.png)
+
 **Wymagania:** Python 3 z modułem `tkinter` (dostarczanym domyślnie z większością instalacji Pythona na Windows).
 
 **Uruchomienie:**
@@ -464,6 +466,8 @@ If you want to preserve a specific game's format, don't change the `type` and `d
 ### WpkJsonEditor.py — a JSON editing GUI
 
 The package also includes an additional script, **`WpkJsonEditor.py`** - a simple GUI (Tkinter, Python standard library only) for conveniently editing `.json` files exported by `WpkTool.exe`, without having to hand-edit the JSON.
+
+![Gui for Wpk Json Editor](Docs/Gui.png)
 
 **Requirements:** Python 3 with the `tkinter` module (bundled by default with most Python installations on Windows).
 
