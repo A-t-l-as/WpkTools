@@ -8,8 +8,6 @@ constexpr char levels_value_name_str[] = "levels";
 
 constexpr char wavepack_value_name_str[] = "wavepack";
 
-constexpr char wave_value_name_str[] = "wave";
-
 constexpr char type_value_name_str[] = "type";
 
 constexpr char disable_level_2_value_name_str[] = "disableLevel2";
