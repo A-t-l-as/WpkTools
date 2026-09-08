@@ -265,6 +265,35 @@ Program (silnik eksportu/importu) był testowany na wszystkich plikach `.wpk` z 
 | KnightShift II Curse of Souls / Polanie 3 | 1065 |
 | Earth 2160 | 961 |
 
+
+### Wymagania systemowe
+
+Program wymaga bibliotek runtime MinGW-w64 (GCC dla Windows). Jeśli podczas uruchamiania pojawi się błąd w stylu:
+
+> Nie można kontynuować wykonywania kodu, ponieważ nie znaleziono obiektu `libgcc_s_seh-1.dll` / `libstdc++-6.dll` / `libwinpthread-1.dll`
+
+oznacza to, że w systemie brakuje wymaganych bibliotek DLL.
+
+#### Rozwiązanie
+
+**Opcja 1 – szybka (zalecana dla większości użytkowników):**
+Pobierz brakujące pliki DLL i umieść je w tym samym folderze co `WpkTool.exe`:
+- `libgcc_s_seh-1.dll`
+- `libstdc++-6.dll`
+- `libwinpthread-1.dll`
+
+**Opcja 2 – pełna instalacja MinGW-w64 (dla developerów):**
+1. Zainstaluj [MSYS2](https://www.msys2.org)
+2. W terminalu MSYS2 uruchom:
+```
+pacman -Syu
+pacman -S mingw-w64-x86_64-toolchain
+```
+3. Dodaj `C:\msys64\mingw64\bin` do zmiennej środowiskowej `PATH`
+4. Zrestartuj komputer
+
+Po wykonaniu jednej z powyższych opcji program powinien uruchomić się bez błędów.
+
 ---
 
 ## GB English
@@ -505,4 +534,30 @@ The export/import engine was tested on all `.wpk` files from the games below, wi
 | KnightShift II Curse of Souls / Polanie 3 | 1065 |
 | Earth 2160 | 961 |
 
-WpkTool was written entirely by Atlas.
+### System requirements
+
+The program requires MinGW-w64 (GCC for Windows) runtime libraries. If you see an error like the following when starting the program:
+
+> The code execution cannot proceed because `libgcc_s_seh-1.dll` / `libstdc++-6.dll` / `libwinpthread-1.dll` was not found.
+
+it means your system is missing the required DLL files.
+
+#### Solution
+
+**Option 1 – quick fix (recommended for most users):**
+Download the missing DLL files and place them in the same folder as `WpkTool.exe`:
+- `libgcc_s_seh-1.dll`
+- `libstdc++-6.dll`
+- `libwinpthread-1.dll`
+
+**Option 2 – full MinGW-w64 installation (for developers):**
+1. Install [MSYS2](https://www.msys2.org)
+2. In the MSYS2 terminal, run:
+```
+pacman -Syu
+pacman -S mingw-w64-x86_64-toolchain
+```
+3. Add `C:\msys64\mingw64\bin` to your `PATH` environment variable
+4. Restart your computer
+
+After completing one of the options above, the program should launch without errors.
