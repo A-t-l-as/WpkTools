@@ -65,7 +65,7 @@ public:
     friend void from_json(const ordered_json& j, WavePack& wp)
     {
         from_json(j, static_cast<WavePackBase&>(wp));
-        wp.RecalculateWaveCounts();
+        wp.RecalculateWaveCountsAndWPType();
     }
 
 private:
@@ -125,7 +125,7 @@ private:
 
 private:
 
-    void RecalculateWaveCounts()
+    void RecalculateWaveCountsAndWPType()
     {
         for (uint32_t i = 0; i < c_number_of_levels; ++i)
         {
@@ -134,7 +134,14 @@ private:
 
             this->m_number_of_waves_in_level_checksum[i] =
                 this->m_number_of_waves_in_level[i];
+
+            for(Wave& wave : m_wave_vector_level[i])
+            {
+                wave.SetWavepackType(this->m_wavepack_type);
+            }
         }
+
+
     }
 
 };

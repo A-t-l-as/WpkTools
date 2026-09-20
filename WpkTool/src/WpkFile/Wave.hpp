@@ -63,6 +63,7 @@ public:
 
     void WriteTo(BinFile& output_bin_file)
     {
+
         switch (this->m_wavepack_type)
         {
             case WpkCompilatorGlobals::old_wpk_format_type:
@@ -125,6 +126,17 @@ public:
 
     std::string ToOldFormatString() const;
     std::string ToNewFormatString() const;
+
+
+    uint32_t GetWavepackType() const
+    {
+        return this->m_wavepack_type;
+    }
+
+    void SetWavepackType(uint32_t wpt)
+    {
+        this->m_wavepack_type = wpt;
+    }
 
 
 private:
