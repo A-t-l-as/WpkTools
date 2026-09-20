@@ -2,7 +2,7 @@
 
 **WpkTool** - narzędzie do dekompilacji i kompilacji plików `.wpk` (wavepack) z gier studia Reality Pump.
 
-Wersja: **2.0.0**
+Wersja: **2.0.3**
 
 ---
 
